@@ -3,7 +3,8 @@ import 'package:rental_app/custom_widgets/custom_button.dart';
 import 'package:rental_app/custom_widgets/custom_heading.dart';
 import 'package:rental_app/custom_widgets/textfield_heading.dart';
 import 'package:rental_app/custom_widgets/custom_textfield.dart';
-import 'package:rental_app/screens/signin_screen.dart';
+import 'package:rental_app/screens/verification_screen.dart';
+
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -22,7 +23,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   void _navigateToResetScreen() {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => SigninScreen()),
+      MaterialPageRoute(builder: (context) => VerificationScreen()),
     );
   }
 
@@ -45,7 +46,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 20),
-          Center(child: CustomHeading(text: 'Reset Your Password')),
+          Center(child: CustomHeading(text: 'Forgot Password')),
           SizedBox(height: 20),
           TextfieldHeading(text: 'Email Address'),
           SizedBox(height: 10),

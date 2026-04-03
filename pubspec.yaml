@@ -62,6 +62,15 @@ flutter:
     - assets/images/images.png
     - assets/images/google.png
     - assets/images/facebook.png
+    - assets/images/toyota.png
+    - assets/images/honda.png
+    - assets/images/lexus.png
+    - assets/images/mercedes.png
+    - assets/images/bmw.png
+    - assets/images/audi.png
+    - assets/images/nissan.png
+    - assets/images/porsche.png
+    - assets/images/volkswagen.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -7,6 +7,7 @@ import 'package:rental_app/screens/home_screen.dart';
 import 'package:rental_app/screens/forgotpassword_screen.dart';
 import 'package:rental_app/screens/signup_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:rental_app/custom_widgets/custom_password.dart';
 
 class SigninScreen extends StatefulWidget {
   const SigninScreen({super.key});
@@ -161,7 +162,7 @@ Future<bool> checkUser(String email, String password) async {
           SizedBox(height: 20),
           TextfieldHeading(text: 'Password'),
           SizedBox(height: 10),
-          CustomTextfield(hintText: 'Enter your password', textInput: password),
+          CustomPassword(hintText: 'Enter your password', textInput: password),
           SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

@@ -6,6 +6,8 @@ import 'package:rental_app/custom_widgets/custom_textfield.dart';
 import 'package:rental_app/screens/signin_screen.dart';
 import 'package:rental_app/screens/onboarding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:rental_app/custom_widgets/custom_password.dart';
+
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -200,7 +202,7 @@ class _SignupScreenState extends State<SignupScreen> {
             SizedBox(height: 10),
             TextfieldHeading(text: 'Password'),
             SizedBox(height: 10),
-            CustomTextfield(
+            CustomPassword(
               hintText: 'Enter your password',
               textInput: password,
             ),
