@@ -42,6 +42,23 @@ class _CarBookingState extends State<CarBooking> {
     });
   }
 
+  bool isChecked = false;
+  Widget _checkInsurance() {
+    return Row(
+      children: [
+        Checkbox(
+          value: isChecked,
+          onChanged: (value) {
+            setState(() {
+              isChecked = value!;
+            });
+          },
+        ),
+        Text('I agree to the Terms and Conditions'),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -269,14 +286,50 @@ class _CarBookingState extends State<CarBooking> {
                 ],
               ),
               SizedBox(height: 10),
-              Text('Insurance',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              SizedBox(height: 5),
               Text(
-                'Basic insurance is included in the rental price. You can choose to add additional coverage for extra protection.',
-                style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+                'Insurance',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
+              SizedBox(height: 5),
+              Container(
+                padding: EdgeInsets.all(2),
 
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Checkbox(
+                      checkColor: Color(0xFFED5C1D),
+                      activeColor: Colors.white,
+                      value: isChecked,
+                      onChanged: (value) {
+                        setState(() {
+                          isChecked = value!;
+                        });
+                      },
+                    ),
+                    Expanded(
+                      child: Text(
+                        'Basic insurance is included in the rental price. You can choose to add additional coverage for extra protection.',
+                        overflow: TextOverflow.clip,
+                        style: TextStyle(fontSize: 12, color: Colors.grey[700]),
+                      ),
+                    ),
+                    Text('See All'),
+                  ],
+                ),
+              ),
+              ElevatedButton(
+                
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(double.infinity, 55),
+                  backgroundColor: Color(0xFFED5C1D),
+                ),
+                child: Text(
+                  'Continue',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                ),
+              ),
             ],
           ),
         ),
