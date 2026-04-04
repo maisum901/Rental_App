@@ -71,6 +71,25 @@ flutter:
     - assets/images/nissan.png
     - assets/images/porsche.png
     - assets/images/volkswagen.png
+    - assets/images/download.jpg
+    - assets/images/crossroad.jpg
+    - assets/images/lexus500.jpg
+    - assets/images/mercedes500.jpg
+    - assets/images/bmwm5.jpg
+    - assets/images/audir8.jpg
+    - assets/images/nissangtr.jpg
+    - assets/images/porsche911.jpg
+    - assets/images/volkswagenbeetle.jpg
+    - assets/images/profile.jpg
+    - assets/images/profile1.jpg
+    - assets/images/profile2.jpg
+    - assets/images/profile3.jpg
+    - assets/images/profile4.jpg
+    - assets/images/profile5.jpg
+    - assets/images/profile6.jpg
+    - assets/images/profile7.jpg
+    - assets/images/profile8.jpg
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

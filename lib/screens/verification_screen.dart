@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:rental_app/screens/forgotpassword_screen.dart';
 import 'package:rental_app/custom_widgets/custom_button.dart';
 import 'package:rental_app/custom_widgets/custom_heading.dart';
-import 'package:rental_app/custom_widgets/textfield_heading.dart';
 import 'package:rental_app/custom_widgets/custom_textfield.dart';
 import 'package:rental_app/screens/newpassword_screen.dart';
 

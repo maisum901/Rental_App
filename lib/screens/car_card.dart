@@ -1,19 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:rental_app/screens/car_details.dart';
 
 class CarCard extends StatelessWidget {
-  // final String logoPath;
+  final String logoPath;
   final String imagePath;
+  final String companyName;
+  final String profileImagePath;
+  final String ownerName;
+  final String description;
   final String carName;
-  final String carModel;
   final String pricePerDay;
+  final String fuelCapacity;
+  final String transmissionType;
+  final String seatingCapacity;
+  final String rating;
 
   const CarCard({
     super.key,
+    required this.logoPath,
     required this.imagePath,
     required this.carName,
-    required this.carModel,
     required this.pricePerDay,
+    required this.fuelCapacity,
+    required this.transmissionType,
+    required this.seatingCapacity,
+    required this.rating,
+    required this.profileImagePath,
+    required this.ownerName,
+    required this.description,
+    required this.companyName,
   });
+
+  void onPressRentNow(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => CarDetails(carName: carName,imagePath: imagePath,companyName: companyName,rating: rating,profileImagePath: profileImagePath,ownerName: ownerName,description: description,rentPerDay: pricePerDay,)),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,20 +54,25 @@ class CarCard extends StatelessWidget {
               Row(
                 children: [
                   SizedBox(width: 20),
-                  Image.asset(imagePath, width: 20, height: 20),
+                  Image.asset(logoPath, width: 20, height: 20),
                 ],
               ),
-              Row(children: [Icon(Icons.favorite_border), SizedBox(width: 16)]),
+              Row(
+                children: [
+                  Icon(Icons.favorite_border, size: 20),
+                  SizedBox(width: 16),
+                ],
+              ),
             ],
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           ClipRRect(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(16), bottom: Radius.circular(16)),
             child: Image.asset(
               imagePath,
-              height: 120,
+              height: 130,
               width: double.infinity,
-              fit: BoxFit.contain,
+              fit: BoxFit.cover,
             ),
           ),
           Padding(
@@ -63,7 +92,7 @@ class CarCard extends StatelessWidget {
                   children: [
                     SizedBox(width: 10),
                     Text(
-                      '4.5',
+                      rating,
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.grey,
@@ -81,12 +110,33 @@ class CarCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children:[
-                Row(children:[Icon(Icons.heat_pump_outlined, color: Colors.grey), SizedBox(width: 6), Text('50L', style: TextStyle(color: Colors.grey))]),
-                Row(children:[Icon(Icons.people, color: Colors.grey), SizedBox(width: 6), Text('Manual', style: TextStyle(color: Colors.grey))]),
-                Row(children:[Icon(Icons.people, color: Colors.grey), SizedBox(width: 6), Text('People', style: TextStyle(color: Colors.grey))]),
-              ]
-            )
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.heat_pump_outlined, color: Colors.grey),
+                    SizedBox(width: 6),
+                    Text(fuelCapacity, style: TextStyle(color: Colors.grey)),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.car_crash, color: Colors.grey),
+                    SizedBox(width: 6),
+                    Text(
+                      transmissionType,
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.people, color: Colors.grey),
+                    SizedBox(width: 6),
+                    Text(seatingCapacity, style: TextStyle(color: Colors.grey)),
+                  ],
+                ),
+              ],
+            ),
           ),
           Divider(height: 30, thickness: 1, indent: 16, endIndent: 16),
           Padding(
@@ -98,13 +148,19 @@ class CarCard extends StatelessWidget {
                   children: [
                     Text(
                       pricePerDay,
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    Text('day', style: TextStyle(fontSize: 14, color: Colors.grey)),
+                    Text(
+                      'day',
+                      style: TextStyle(fontSize: 14, color: Colors.grey),
+                    ),
                   ],
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => onPressRentNow(context),
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(100, 40),
                     backgroundColor: Color(0xFFED5C1D),
@@ -112,7 +168,10 @@ class CarCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  child: Text('Rent Now', style: TextStyle(color: Colors.white)),
+                  child: Text(
+                    'Rent Now',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ],
             ),
