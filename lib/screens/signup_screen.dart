@@ -8,7 +8,6 @@ import 'package:rental_app/screens/onboarding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:rental_app/custom_widgets/custom_password.dart';
 
-
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
 
@@ -27,9 +26,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   Future<bool> userExists(String email) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
     List<String> emailList = prefs.getStringList('emails') ?? [];
- 
     return emailList.contains(email);
   }
 
@@ -64,20 +61,17 @@ class _SignupScreenState extends State<SignupScreen> {
         context,
       ).showSnackBar(SnackBar(content: Text('Please enter a valid email')));
       return;
-    }
-     else if (password.text.length < 8) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Password must be at least 8 characters')));
+    } else if (password.text.length < 8) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Password must be at least 8 characters')),
+      );
       return;
-    }
-    else if (!isChecked) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Please agree to the Terms and Conditions')));
+    } else if (!isChecked) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Please agree to the Terms and Conditions')),
+      );
       return;
-    }
-    else {
+    } else {
       await saveUser(email.text, password.text, name.text);
       await Future.delayed(Duration(seconds: 1));
       ScaffoldMessenger.of(

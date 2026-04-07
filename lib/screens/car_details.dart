@@ -3,6 +3,8 @@ import 'package:rental_app/screens/home_screen.dart';
 import 'package:rental_app/custom_widgets/custom_tabbar.dart';
 import 'package:rental_app/screens/description_tab.dart';
 import 'package:rental_app/screens/car_booking.dart';
+import 'package:rental_app/screens/gallery_tab.dart';
+
 
 class CarDetails extends StatefulWidget {
   final String imagePath;
@@ -144,7 +146,7 @@ class _CarDetailsState extends State<CarDetails> {
                       ownerName: widget.ownerName,
                       description: widget.description,
                     ),
-                    Center(child: Text("Gallery Content")),
+                    GalleryTab(),
                     Center(child: Text("Reviews Content")),
                   ],
                 ),

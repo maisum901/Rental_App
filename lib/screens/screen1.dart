@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rental_app/custom_widgets/search_field.dart';
 import 'package:rental_app/screens/car_card.dart';
+import 'package:rental_app/screens/car_details.dart';
 
 class Screen1 extends StatefulWidget {
   const Screen1({super.key});
@@ -10,7 +11,6 @@ class Screen1 extends StatefulWidget {
 }
 
 class _Screen1State extends State<Screen1> {
-
   List<List<String>> popularCars = [
     [
       'assets/images/toyota.png',
@@ -167,129 +167,180 @@ class _Screen1State extends State<Screen1> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
+    return Expanded(
+      child: SingleChildScrollView(
+        child: Column(
           children: [
-            SizedBox(width: 16),
-            Expanded(
-              child: SearchField(
-                hintText: "Search...",
-                controller: TextEditingController(),
-              ),
-            ),
-            SizedBox(width: 16),
-            CircleAvatar(
-              radius: 20,
-              backgroundColor: Colors.white,
-              child: Icon(Icons.filter_list, color: Color(0xFFED5C1D)),
-            ),
-            SizedBox(width: 20),
-          ],
-        ),
-        SizedBox(height: 20),
-        SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
+            SizedBox(height: 60),
+            Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  SizedBox(width: 16),
-                  Text(
-                    'Top Brands',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-              SizedBox(height: 16),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: List.generate(topBrands.length, (index) {
-                    return Container(
-                      margin: EdgeInsets.symmetric(horizontal: 8),
-                      width: 80,
-                      height: 80,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(60),
-                      ),
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            topBrands[index],
-                            fit: BoxFit.contain,
-                            width: 60,
-                            height: 60,
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                            topBrands[index]
-                                .split('/')
-                                .last
-                                .split('.')
-                                .first
-                                .toUpperCase(),
-                            style: TextStyle(fontSize: 10),
-                          ),
-                        ],
-                      ),
-                    );
-                  }),
-                ),
-              ),
-
-              SizedBox(height: 30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
+                  SizedBox(width: 20),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(width: 16),
-                      Text(
-                        'Popular Cars',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      Text('Location', style: TextStyle(fontSize: 12, color: Colors.grey, fontWeight: FontWeight.bold)),
+                      Row(
+                        children: [
+                          Icon(Icons.location_on, color: Color(0xFFED5C1D), size: 14),
+                          Text('New York, USA', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                        ],
                       ),
                     ],
                   ),
-                  Row(children: [seeAllCarsGesture(), SizedBox(width: 16)]),
+                  Spacer(),
+                  CircleAvatar(
+                    radius: 20,
+                    backgroundColor: Colors.white,
+                    child: Icon(Icons.notification_add, color: Color(0xFFED5C1D)),
+                  ),
+                  SizedBox(width: 20),
                 ],
               ),
-              SizedBox(height: 30),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: List.generate(topBrands.length, (index) {
-                    return Container(
-                      margin: EdgeInsets.symmetric(horizontal: 8),
-                      width: 300,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(60),
-                      ),
-                      child: CarCard(
-                        logoPath: popularCars[index][0],
-                        imagePath: popularCars[index][1],
-                        carName: popularCars[index][2],
-                        pricePerDay: popularCars[index][3],
-                        fuelCapacity: popularCars[index][4],
-                        transmissionType: popularCars[index][5],
-                        seatingCapacity: popularCars[index][6],
-                        rating: popularCars[index][7],
-                        profileImagePath: popularCars[index][8],
-                        ownerName: popularCars[index][9],
-                        description: popularCars[index][10],
-                        companyName: popularCars[index][11],
-                      ),
-                    );
-                  }),
+              SizedBox(height: 20),
+            Row(
+              children: [
+                SizedBox(width: 16),
+                Expanded(
+                  child: SearchField(
+                    hintText: "Search...",
+                    controller: TextEditingController(),
+                  ),
                 ),
+                SizedBox(width: 16),
+                CircleAvatar(
+                  radius: 20,
+                  backgroundColor: Colors.white,
+                  child: Icon(Icons.filter_list, color: Color(0xFFED5C1D)),
+                ),
+                SizedBox(width: 20),
+              ],
+            ),
+            SizedBox(height: 20),
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(width: 16),
+                      Text(
+                        'Top Brands',
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 16),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: List.generate(topBrands.length, (index) {
+                        return Container(
+                          margin: EdgeInsets.symmetric(horizontal: 8),
+                          width: 80,
+                          height: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(60),
+                          ),
+                          child: Column(
+                            children: [
+                              Image.asset(
+                                topBrands[index],
+                                fit: BoxFit.contain,
+                                width: 60,
+                                height: 60,
+                              ),
+                              SizedBox(height: 4),
+                              Text(
+                                topBrands[index]
+                                    .split('/')
+                                    .last
+                                    .split('.')
+                                    .first
+                                    .toUpperCase(),
+                                style: TextStyle(fontSize: 10),
+                              ),
+                            ],
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+        
+                  SizedBox(height: 30),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(width: 16),
+                          Text(
+                            'Popular Cars',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(children: [seeAllCarsGesture(), SizedBox(width: 16)]),
+                    ],
+                  ),
+                  SizedBox(height: 30),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: List.generate(topBrands.length, (index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CarDetails(
+                                  carName: popularCars[index][2],
+                                  imagePath: popularCars[index][1],
+                                  companyName: popularCars[index][11],
+                                  rating: popularCars[index][7],
+                                  profileImagePath: popularCars[index][8],
+                                  ownerName: popularCars[index][9],
+                                  description: popularCars[index][10],
+                                  rentPerDay: popularCars[index][3],
+                                ),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            margin: EdgeInsets.symmetric(horizontal: 8),
+                            width: 300,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(60),
+                            ),
+                            child: CarCard(
+                              logoPath: popularCars[index][0],
+                              imagePath: popularCars[index][1],
+                              carName: popularCars[index][2],
+                              pricePerDay: popularCars[index][3],
+                              fuelCapacity: popularCars[index][4],
+                              transmissionType: popularCars[index][5],
+                              seatingCapacity: popularCars[index][6],
+                              rating: popularCars[index][7],
+                              profileImagePath: popularCars[index][8],
+                              ownerName: popularCars[index][9],
+                              description: popularCars[index][10],
+                              companyName: popularCars[index][11],
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
