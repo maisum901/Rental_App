@@ -11,16 +11,35 @@ class GalleryTab extends StatefulWidget {
 }
 
 class _GalleryTabState extends State<GalleryTab> {
-  List<File> images = [];
+  List<String> imagesPath = [];
   final ImagePicker picker = ImagePicker();
 
+  @override
+  void initState() {
+    super.initState();
+    getImages();
+  }
+
+  Future<void> getImages() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> storedImages = prefs.getStringList('storedData') ?? [];
+    setState(() {
+      imagesPath = storedImages;
+    });
+  }
+
   Future<void> _pickImages() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> storedImages = prefs.getStringList('storedData') ?? [];
     final List<XFile> pickedImages = await picker.pickMultiImage();
     if (pickedImages.isNotEmpty) {
+      List<String> newPaths = pickedImages.map((file) => file.path).toList();
+      storedImages.addAll(newPaths);
+      await prefs.setStringList('storedData', storedImages);
       setState(() {
-        print(images);
-        images = pickedImages.map((file) => File(file.path)).toList();
+        imagesPath = storedImages;
       });
+      //print(storedImages);
     }
   }
 
@@ -31,11 +50,8 @@ class _GalleryTabState extends State<GalleryTab> {
         child: Column(
           children: [
             SizedBox(height: 20),
-            
 
-            SizedBox(height: 10),
-
-            images.isNotEmpty
+            imagesPath.isNotEmpty
                 ? Expanded(
                     child: GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -44,12 +60,12 @@ class _GalleryTabState extends State<GalleryTab> {
                         mainAxisSpacing: 8,
                       ),
                       scrollDirection: Axis.vertical,
-                      itemCount: images.length,
+                      itemCount: imagesPath.length,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: EdgeInsets.all(8),
                           child: Image.file(
-                            images[index],
+                            File(imagesPath[index]),
                             width: 100,
                             height: 100,
                             fit: BoxFit.cover,
@@ -60,7 +76,7 @@ class _GalleryTabState extends State<GalleryTab> {
                   )
                 : Text("No images selected"),
 
-                ElevatedButton(
+            ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFFED5C1D),
                 padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
